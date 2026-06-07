@@ -43,7 +43,8 @@
             </div>
 
             <!-- Giỏ hàng -->
-            <button class="relative p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors text-slate-700">
+            <button id="btn-open-card"
+                class="relative p-2 bg-slate-100 hover:bg-slate-200 rounded-full transition-colors text-slate-700">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="text-slate-400 lucide lucide-shopping-cart-icon lucide-shopping-cart">
@@ -58,252 +59,266 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+    <main id="main-container" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+        <div id="product-page">
+            <!-- Hero Banner Section -->
+            <div
+                class="mb-12 bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl">
+                <div class="max-w-lg text-center md:text-left">
+                    <span class="bg-amber-500 text-slate-950 font-bold text-xs uppercase px-3 py-1 rounded-full">Sản
+                        phẩm
+                        nổi bật</span>
+                    <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4 tracking-tight leading-tight">iPhone 17 Pro Max
+                    </h2>
+                    <p class="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">Định nghĩa lại công nghệ tương
+                        lai
+                        với chip A19 Pro thế hệ mới và cụm camera zoom quang học 10x hoàn toàn ẩn dưới màn hình.</p>
+                    <button
+                        class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-full shadow-lg transition-all hover:-translate-y-0.5">Mua
+                        Ngay Đến 2026</button>
+                </div>
 
-        <!-- Hero Banner Section -->
-        <div
-            class="mb-12 bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl">
-            <div class="max-w-lg text-center md:text-left">
-                <span class="bg-amber-500 text-slate-950 font-bold text-xs uppercase px-3 py-1 rounded-full">Sản phẩm
-                    nổi bật</span>
-                <h2 class="text-3xl md:text-5xl font-black mt-4 mb-4 tracking-tight leading-tight">iPhone 17 Pro Max
-                </h2>
-                <p class="text-slate-300 text-sm md:text-base mb-6 leading-relaxed">Định nghĩa lại công nghệ tương lai
-                    với chip A19 Pro thế hệ mới và cụm camera zoom quang học 10x hoàn toàn ẩn dưới màn hình.</p>
-                <button
-                    class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3 rounded-full shadow-lg transition-all hover:-translate-y-0.5">Mua
-                    Ngay Đến 2026</button>
+                <div class="w-48 h-auto md:w-64 md:h-auto rounded-2xl rotate-6 flex items-center justify-center">
+                    <img src="https://uqbgilpaloxxbninihno.supabase.co/storage/v1/object/public/part-2-audio/iphone%2017%20pro%20max.png"
+                        alt="Iphone 17 Pro Max">
+                </div>
             </div>
 
-            <div class="w-48 h-auto md:w-64 md:h-auto rounded-2xl rotate-6 flex items-center justify-center">
-                <img src="https://uqbgilpaloxxbninihno.supabase.co/storage/v1/object/public/part-2-audio/iphone%2017%20pro%20max.png"
-                    alt="Iphone 17 Pro Max">
+            <!-- Bộ lọc nhanh thương hiệu -->
+            <div id="filter" class="mb-8">
+                <h3 class="text-lg font-bold mb-4 text-slate-900">Thương hiệu phổ biến</h3>
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+                    <div id="filter-by-brand" class="flex flex-wrap gap-3">
+                        <button data-type="all"
+                            class="btn-filter-by-brand px-5 py-2 rounded-full bg-slate-900 border border-slate-200 text-white font-medium text-sm cursor-pointer">
+                            Tất cả</button>
+                        <div
+                            class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
+                        </div>
+                        <div
+                            class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
+                        </div>
+                        <div
+                            class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
+                        </div>
+                        <div
+                            class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
+                        </div>
+                        <div
+                            class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
+                        </div>
+                    </div>
+
+                    <!-- Sắp xếp giá tiền -->
+                    <h3 class="text-lg font-bold my-4 text-slate-900 lg:hidden">Sắp xếp theo</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button
+                            class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-arrow-down-narrow-wide-icon lucide-arrow-down-narrow-wide">
+                                <path d="m3 16 4 4 4-4" />
+                                <path d="M7 20V4" />
+                                <path d="M11 4h4" />
+                                <path d="M11 8h7" />
+                                <path d="M11 12h10" />
+                            </svg>
+                            <span>Giá Thấp - Cao</span>
+                        </button>
+                        <button
+                            class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-arrow-down-wide-narrow-icon lucide-arrow-down-wide-narrow">
+                                <path d="m3 16 4 4 4-4" />
+                                <path d="M7 20V4" />
+                                <path d="M11 4h10" />
+                                <path d="M11 8h7" />
+                                <path d="M11 12h4" />
+                            </svg>
+                            <span>Giá Cao - Thấp</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Danh sách sản phẩm -->
+            <div id="product-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+
+                <!-- Loading list -->
+                <div
+                    class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-4 flex flex-col items-center relative">
+                        <div
+                            class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
+                            PhoneStore
+                        </div>
+                        <div class="w-full text-left">
+                            <span class="text-xs text-slate-400 font-medium uppercase">
+                                <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </span>
+                            <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
+                                <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
+                        <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                        </div>
+                        <div
+                            class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-4 flex flex-col items-center relative">
+                        <div
+                            class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
+                            PhoneStore
+                        </div>
+                        <div class="w-full text-left">
+                            <span class="text-xs text-slate-400 font-medium uppercase">
+                                <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </span>
+                            <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
+                                <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
+                        <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                        </div>
+                        <div
+                            class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-4 flex flex-col items-center relative">
+                        <div
+                            class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
+                            PhoneStore
+                        </div>
+                        <div class="w-full text-left">
+                            <span class="text-xs text-slate-400 font-medium uppercase">
+                                <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </span>
+                            <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
+                                <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
+                        <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                        </div>
+                        <div
+                            class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-4 flex flex-col items-center relative">
+                        <div
+                            class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
+                            PhoneStore
+                        </div>
+                        <div class="w-full text-left">
+                            <span class="text-xs text-slate-400 font-medium uppercase">
+                                <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </span>
+                            <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
+                                <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
+                        <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                        </div>
+                        <div
+                            class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-4 flex flex-col items-center relative">
+                        <div
+                            class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
+                            PhoneStore
+                        </div>
+                        <div class="w-full text-left">
+                            <span class="text-xs text-slate-400 font-medium uppercase">
+                                <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </span>
+                            <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
+                                <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                                </div>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
+                        <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
+                        </div>
+                        <div
+                            class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Bộ lọc nhanh thương hiệu -->
-        <div id="filter" class="mb-8">
-            <h3 class="text-lg font-bold mb-4 text-slate-900">Thương hiệu phổ biến</h3>
-            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-                <div id="filter-by-brand" class="flex flex-wrap gap-3">
-                    <button data-type="all"
-                        class="btn-filter-by-brand px-5 py-2 rounded-full bg-slate-900 border border-slate-200 text-white font-medium text-sm cursor-pointer">
-                        Tất cả</button>
-                    <div
-                        class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
-                    </div>
-                    <div
-                        class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
-                    </div>
-                    <div
-                        class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
-                    </div>
-                    <div
-                        class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
-                    </div>
-                    <div
-                        class="w-25 h-9 bg-slate-100 border border-slate-200 rounded-full transition-transform duration-300">
-                    </div>
-                </div>
+        <div id="cart-page" class="hidden animate__animated animate__fadeIn">
 
-                <!-- Sắp xếp giá tiền -->
-                <h3 class="text-lg font-bold my-4 text-slate-900 lg:hidden">Sắp xếp theo</h3>
-                <div class="flex flex-wrap gap-3">
-                    <button
-                        class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-arrow-down-narrow-wide-icon lucide-arrow-down-narrow-wide">
-                            <path d="m3 16 4 4 4-4" />
-                            <path d="M7 20V4" />
-                            <path d="M11 4h4" />
-                            <path d="M11 8h7" />
-                            <path d="M11 12h10" />
-                        </svg>
-                        <span>Giá Thấp - Cao</span>
-                    </button>
-                    <button
-                        class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-arrow-down-wide-narrow-icon lucide-arrow-down-wide-narrow">
-                            <path d="m3 16 4 4 4-4" />
-                            <path d="M7 20V4" />
-                            <path d="M11 4h10" />
-                            <path d="M11 8h7" />
-                            <path d="M11 12h4" />
-                        </svg>
-                        <span>Giá Cao - Thấp</span>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Danh sách sản phẩm -->
-        <div id="product-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-
-            <!-- Loading list -->
-            <div
-                class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                <div class="p-4 flex flex-col items-center relative">
-                    <div
-                        class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
-                        PhoneStore
-                    </div>
-                    <div class="w-full text-left">
-                        <span class="text-xs text-slate-400 font-medium uppercase">
-                            <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
-                            <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </h4>
-                    </div>
-                </div>
-                <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
-                    <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                    </div>
-                    <div
-                        class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                <div class="p-4 flex flex-col items-center relative">
-                    <div
-                        class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
-                        PhoneStore
-                    </div>
-                    <div class="w-full text-left">
-                        <span class="text-xs text-slate-400 font-medium uppercase">
-                            <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
-                            <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </h4>
-                    </div>
-                </div>
-                <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
-                    <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                    </div>
-                    <div
-                        class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                <div class="p-4 flex flex-col items-center relative">
-                    <div
-                        class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
-                        PhoneStore
-                    </div>
-                    <div class="w-full text-left">
-                        <span class="text-xs text-slate-400 font-medium uppercase">
-                            <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
-                            <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </h4>
-                    </div>
-                </div>
-                <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
-                    <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                    </div>
-                    <div
-                        class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                <div class="p-4 flex flex-col items-center relative">
-                    <div
-                        class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
-                        PhoneStore
-                    </div>
-                    <div class="w-full text-left">
-                        <span class="text-xs text-slate-400 font-medium uppercase">
-                            <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
-                            <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </h4>
-                    </div>
-                </div>
-                <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
-                    <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                    </div>
-                    <div
-                        class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="group bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                <div class="p-4 flex flex-col items-center relative">
-                    <div
-                        class="w-full h-40 bg-slate-100 rounded-xl mb-4 transition-transform duration-300 flex items-center justify-center text-slate-400 font-medium">
-                        PhoneStore
-                    </div>
-                    <div class="w-full text-left">
-                        <span class="text-xs text-slate-400 font-medium uppercase">
-                            <div class="w-1/3 h-4 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">
-                            <div class="w-full h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                            </div>
-                        </h4>
-                    </div>
-                </div>
-                <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
-                    <div class="w-2/3 h-6 bg-slate-100 rounded-sm transition-transform duration-300">
-                    </div>
-                    <div
-                        class="flex justify-center items-center w-9 h-9 bg-slate-100 rounded-xl transition-transform duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="text-slate-300 font-bold lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
         </div>
     </main>
 
