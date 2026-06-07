@@ -35,7 +35,27 @@ export default class AppControllers {
     }
 
     bindEvents = () => {
+        this.productContainer.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-add-to-cart');
+            if (!btn) return
 
+            const productId = btn.getAttribute('data-id');
+            // console.log(productId);
+            const product = this.productData.find(p => p.id === productId);
+            // console.log(product);
+
+            const existing = this.cart.findIndex(p => p.product.id === productId);
+            console.log('vi tri: ', existing);
+
+            if (existing === -1) {
+                const cart = new CartItem(product, 1);
+                this.cart.push(cart)
+            } else {
+                this.cart[existing].quantity += 1;
+            }
+
+            console.log(this.cart);
+        })
     }
 
     fetchProductData = () => {
