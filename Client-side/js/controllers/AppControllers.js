@@ -1,5 +1,6 @@
 import ApiServices from "../services/ApiServices.js";
 import ProductView from "../views/ProductView.js";
+import CartItem from "../models/CartItem.js";
 
 // Helper
 const getId = (id) => document.getElementById(id);
@@ -18,7 +19,7 @@ export default class AppControllers {
         this.filterByBrand = getId('filter-by-brand');
 
         this.productData = [];
-        this.cart = getLocalStorage('CART_DATA', []);
+        this.cart = [];
     }
 
     init = async () => {
@@ -29,6 +30,8 @@ export default class AppControllers {
 
         const productView = new ProductView(this.productContainer, this.filterByBrand, this.productData);
         productView.init();
+
+        this.bindEvents();
     }
 
     bindEvents = () => {

@@ -63,7 +63,7 @@ export default class ProductView {
                     </div>
                     <div class="w-full text-left">
                         <span class="text-xs text-slate-400 font-medium uppercase">${p.type}</span>
-                        <h4 class="font-bold text-slate-900 text-base mt-1 truncate">${p.name}</h4>
+                        <h4 class="font-bold text-slate-900 mt-1 line-clamp-2 min-h-[48px]">${p.name}</h4>
                     </div>
                 </div>
                 <div class="px-4 pb-4 border-t border-slate-100 pt-3 flex items-center justify-between mt-auto">
@@ -97,5 +97,4 @@ export default class ProductView {
 
         this.filterByBrand.insertAdjacentHTML('beforeend', html);
     }
-
 }
