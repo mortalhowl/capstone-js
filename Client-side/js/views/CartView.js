@@ -2,10 +2,11 @@
 const getId = (id) => document.getElementById(id);
 
 export default class CartView {
-    constructor(productPageId, cartPageId, cartListId) {
+    constructor(productPageId, cartPageId, cartListId, totalQuantityId) {
         this.productPage = getId(productPageId);
         this.cartPage = getId(cartPageId);
         this.cartList = getId(cartListId);
+        this.totalQuantity = getId(totalQuantityId);
     }
 
     bindEvents = (onCloseCart, onRemove, onUpdQuantity) => {
@@ -14,7 +15,13 @@ export default class CartView {
         })
 
         this.cartList.addEventListener('click', (e) => {
+            const btn = e.target.closest('.btn-quantity');
+            if (!btn) return
 
+            const action = btn.getAttribute('data-action');
+            const productId = btn.getAttribute('data-id');
+
+            if (onUpdQuantity) onUpdQuantity(productId, action);
         })
 
 
@@ -27,6 +34,16 @@ export default class CartView {
         } else {
             this.productPage.classList.remove('hidden');
             this.cartPage.classList.add('hidden');
+        }
+    }
+
+    renderBadge = (totalQuantity) => {
+        if (totalQuantity === 0) {
+            this.totalQuantity.innerHTML = 0;
+            this.totalQuantity.classList.add('hidden');
+        } else {
+            this.totalQuantity.innerHTML = totalQuantity;
+            this.totalQuantity.classList.remove('hidden');
         }
     }
 
@@ -53,9 +70,9 @@ export default class CartView {
                     </div>
 
                     <div class="flex items-center border border-slate-200 rounded-full bg-slate-50 p-1">
-                        <button class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-slate-200 rounded-full transition-colors font-bold">-</button>
+                        <button data-id="${p.product.id}" data-action="decrease" class="btn-quantity w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-slate-200 rounded-full transition-colors font-bold">-</button>
                         <span class="w-10 text-center font-semibold text-sm text-slate-900">${p.quantity}</span>
-                        <button class="w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-slate-200 rounded-full transition-colors font-bold">+</button>
+                        <button data-id="${p.product.id}" data-action="increase" class="btn-quantity w-8 h-8 flex items-center justify-center text-slate-500 hover:bg-slate-200 rounded-full transition-colors font-bold">+</button>
                     </div>
 
                     <div class="hidden sm:block text-right min-w-[120px]">
