@@ -2,11 +2,12 @@
 const getId = (id) => document.getElementById(id);
 
 export default class CartView {
-    constructor(productPageId, cartPageId, cartListId, totalQuantityId) {
+    constructor(productPageId, cartPageId, cartListId, totalQuantityId, orderDetailId) {
         this.productPage = getId(productPageId);
         this.cartPage = getId(cartPageId);
         this.cartList = getId(cartListId);
         this.totalQuantity = getId(totalQuantityId);
+        this.orderDetail = getId(orderDetailId);
     }
 
     bindEvents = (onCloseCart, onRemove, onUpdQuantity) => {
@@ -47,7 +48,7 @@ export default class CartView {
         }
     }
 
-    render = (cartData) => {
+    renderList = (cartData) => {
         let html = '';
         if (cartData.length === 0) {
             html = `
@@ -89,7 +90,27 @@ export default class CartView {
             `).join("");
         }
 
-
         this.cartList.innerHTML = html;
+    }
+
+    renderOrderDetail = (totalPrice) => {
+        this.orderDetail.innerHTML = `
+            <div class="space-y-4 text-sm mb-6">
+                <div class="flex justify-between text-slate-500">
+                    <span>Tạm tính</span>
+                    <span class="font-semibold text-slate-900">${totalPrice.toLocaleString('vi-VN')}đ</span>
+                </div>
+                <div class="flex justify-between text-slate-500">
+                    <span>Phí vận chuyển</span>
+                    <span class="font-semibold text-green-600">Miễn phí</span>
+                </div>
+                <hr class="border-slate-100">
+                <div class="flex justify-between text-base">
+                    <span class="font-bold text-slate-900">Tổng cộng</span>
+                    <span class="font-black text-xl text-amber-600">${totalPrice.toLocaleString('vi-VN')}đ</span>
+                </div>
+                <p class="text-[11px] text-slate-400 text-right">(Đã bao gồm thuế VAT)</p>
+            </div>
+        `
     }
 }
