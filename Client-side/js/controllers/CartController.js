@@ -10,7 +10,7 @@ export default class CartController {
     init = () => {
         this.cartView.bindEvents(
             this.handleCloseCart,
-            this.handleRemove,
+            this.handleRemoveItem,
             this.handleUpdQuantity,
         );
         this.updateView();
@@ -30,8 +30,10 @@ export default class CartController {
         this.cartView.toggleVisibility(false);
     }
 
-    handleRemove = () => {
-
+    handleRemoveItem = (productId) => {
+        const idx = this.cartData.findIndex(p => p.product.id = productId);
+        if (idx !== -1) this.cartData.splice(idx, 1);
+        this.updateView()
     }
 
     handleUpdQuantity = (productId, action) => {
