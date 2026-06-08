@@ -1,4 +1,4 @@
-import AppControllers from "./controllers/AppControllers.js";
+import AppController from "./controllers/AppController.js";
 
-const app = new AppControllers();
+const app = new AppController();
 app.init();
