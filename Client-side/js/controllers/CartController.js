@@ -3,7 +3,7 @@ import CartView from "../views/CartView.js";
 
 export default class CartController {
     constructor() {
-        this.cartView = new CartView('product-page', 'cart-page', 'cart-list', 'total-quantity');
+        this.cartView = new CartView('product-page', 'cart-page', 'cart-list', 'total-quantity', 'order-detail');
         this.cartData = [];
     }
 
@@ -51,9 +51,12 @@ export default class CartController {
     }
 
     updateView = () => {
-        this.cartView.render(this.cartData);
+        this.cartView.renderList(this.cartData);
         this.cartView.renderBadge(this.getTotalQuantity());
+        this.cartView.renderOrderDetail(this.getTotalPrice());
     }
 
     getTotalQuantity = () => this.cartData.reduce((total, p) => total + p.quantity, 0);
+
+    getTotalPrice = () => this.cartData.reduce((total, p) => total + (p.product.price * p.quantity), 0);
 }

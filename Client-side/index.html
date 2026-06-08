@@ -344,43 +344,27 @@
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
                         <h3 class="text-xl font-bold text-slate-900 mb-6 pb-4 border-b border-slate-100">Tóm tắt đơn
                             hàng</h3>
-
-                        <div class="space-y-4 text-sm mb-6">
-                            <div class="flex justify-between text-slate-500">
-                                <span>Tạm tính</span>
-                                <span class="font-semibold text-slate-900">62.980.000đ</span>
-                            </div>
-                            <div class="flex justify-between text-slate-500">
-                                <span>Phí vận chuyển</span>
-                                <span class="font-semibold text-green-600">Miễn phí</span>
-                            </div>
-                            <div class="flex justify-between text-slate-500">
-                                <span>Giảm giá voucher</span>
-                                <span class="font-semibold text-red-500">-500.000đ</span>
-                            </div>
-                            <hr class="border-slate-100">
-                            <div class="flex justify-between text-base">
-                                <span class="font-bold text-slate-900">Tổng cộng</span>
-                                <span class="font-black text-xl text-amber-600">62.480.000đ</span>
-                            </div>
-                            <p class="text-[11px] text-slate-400 text-right">(Đã bao gồm thuế VAT)</p>
-                        </div>
-
-                        <div class="mb-6">
-                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Mã giảm
-                                giá</label>
-                            <div class="flex gap-2">
-                                <input type="text" placeholder="Nhập mã CODE"
-                                    class="flex-grow px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-amber-500 uppercase font-semibold">
-                                <button
-                                    class="bg-slate-900 hover:bg-slate-800 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-colors">Áp
-                                    dụng</button>
+                        <div id="order-detail">
+                            <div class="space-y-4 text-sm mb-6">
+                                <div class="flex justify-between text-slate-500">
+                                    <span>Tạm tính</span>
+                                    <span class="font-semibold text-slate-900">0đ</span>
+                                </div>
+                                <div class="flex justify-between text-slate-500">
+                                    <span>Phí vận chuyển</span>
+                                    <span class="font-semibold text-green-600">Miễn phí</span>
+                                </div>
+                                <hr class="border-slate-100">
+                                <div class="flex justify-between text-base">
+                                    <span class="font-bold text-slate-900">Tổng cộng</span>
+                                    <span class="font-black text-xl text-amber-600">0đ</span>
+                                </div>
+                                <p class="text-[11px] text-slate-400 text-right">(Đã bao gồm thuế VAT)</p>
                             </div>
                         </div>
-
                         <button
                             class="w-full bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-500/10 transition-all hover:-translate-y-0.5 text-center block">
-                            Tiến Hành Thanh Toán
+                            Thanh Toán
                         </button>
                     </div>
                 </div>
