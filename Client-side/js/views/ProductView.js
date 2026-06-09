@@ -2,12 +2,14 @@
 const getId = (id) => document.getElementById(id);
 
 export default class ProductView {
-    constructor(productContainerId, filterByBrandId) {
+    constructor(productContainerId, filterByBrandId, ascSortId, descSortId) {
         this.productContainer = getId(productContainerId);
         this.filterByBrand = getId(filterByBrandId);
+        this.ascSort = getId(ascSortId);
+        this.descSort = getId(descSortId);
     }
 
-    bindEvents = (onFilterClick, onAddToCardClick) => {
+    bindEvents = (onFilterClick, onAddToCardClick, onSort) => {
         // sự kiện lọc sp
         this.filterByBrand.addEventListener('click', (e) => {
             const btn = e.target.closest('.btn-filter-by-brand');
@@ -35,6 +37,16 @@ export default class ProductView {
             const productId = btn.getAttribute('data-id');
 
             if (onAddToCardClick) onAddToCardClick(productId);
+        })
+
+        this.ascSort.addEventListener('click', () => {
+            const type = 'asc';
+            if (onSort) onSort(type);
+        })
+
+        this.descSort.addEventListener('click', () => {
+            const type = 'desc';
+            if (onSort) onSort(type);
         })
     }
 

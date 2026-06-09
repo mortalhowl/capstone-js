@@ -90,8 +90,8 @@
             <!-- Bộ lọc nhanh thương hiệu -->
             <div id="filter" class="mb-8">
                 <h3 class="text-lg font-bold mb-4 text-slate-900">Thương hiệu phổ biến</h3>
-                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
-                    <div id="filter-by-brand" class="flex flex-wrap gap-3">
+                <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start">
+                    <div id="filter-by-brand" class="w-2/3 flex flex-wrap gap-3">
                         <button data-type="all"
                             class="btn-filter-by-brand px-5 py-2 rounded-full bg-slate-900 border border-slate-200 text-white font-medium text-sm cursor-pointer">
                             Tất cả</button>
@@ -114,8 +114,8 @@
 
                     <!-- Sắp xếp giá tiền -->
                     <h3 class="text-lg font-bold my-4 text-slate-900 lg:hidden">Sắp xếp theo</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <button
+                    <div class="flex flex-nowrap gap-3">
+                        <button id="btn-asc"
                             class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -127,9 +127,9 @@
                                 <path d="M11 8h7" />
                                 <path d="M11 12h10" />
                             </svg>
-                            <span>Giá Thấp - Cao</span>
+                            <span class="text-nowrap">Giá Thấp - Cao</span>
                         </button>
-                        <button
+                        <button id="btn-desc"
                             class="flex flex-nowrap items-center gap-1 px-5 py-2 rounded-full bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-sm font-medium transition-colors shadow-xs">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -141,7 +141,7 @@
                                 <path d="M11 8h7" />
                                 <path d="M11 12h4" />
                             </svg>
-                            <span>Giá Cao - Thấp</span>
+                            <span class="text-nowrap">Giá Cao - Thấp</span>
                         </button>
                     </div>
                 </div>
