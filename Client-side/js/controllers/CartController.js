@@ -1,7 +1,7 @@
 import CartItem from "../models/CartItem.js"
 import CartView from "../views/CartView.js";
-import toastService from "../services/ToastService.js";
-import ModalView from "../views/modalView.js";
+import toastService from "../services/toastService.js";
+import ModalView from "../views/ModalView.js";
 
 const setLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 const getLocalStorage = (key) => {
