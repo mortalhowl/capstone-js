@@ -1,10 +1,16 @@
 import CartItem from "../models/CartItem.js"
 import CartView from "../views/CartView.js";
 
+const setLocalStorage = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+const getLocalStorage = (key) => {
+    const saveData = localStorage.getItem(key);
+    return saveData ? JSON.parse(saveData) : [];
+}
+
 export default class CartController {
     constructor() {
         this.cartView = new CartView('product-page', 'cart-page', 'cart-list', 'total-quantity', 'order-detail');
-        this.cartData = [];
+        this.cartData = getLocalStorage('CART_DATA') || [];
     }
 
     init = () => {
@@ -24,6 +30,7 @@ export default class CartController {
             this.cartData.push(cartItem);
         } else this.cartData[existing].quantity += 1;
         this.updateView();
+        this.saveData();
     }
 
     handleCloseCart = () => {
@@ -33,7 +40,8 @@ export default class CartController {
     handleRemoveItem = (productId) => {
         const idx = this.cartData.findIndex(p => p.product.id = productId);
         if (idx !== -1) this.cartData.splice(idx, 1);
-        this.updateView()
+        this.updateView();
+        this.saveData();
     }
 
     handleUpdQuantity = (productId, action) => {
@@ -45,6 +53,7 @@ export default class CartController {
                 else this.cartData.splice(idx, 1);
             }
             this.updateView();
+            this.saveData();
         }
     }
 
@@ -56,6 +65,10 @@ export default class CartController {
         this.cartView.renderList(this.cartData);
         this.cartView.renderBadge(this.getTotalQuantity());
         this.cartView.renderOrderDetail(this.getTotalPrice());
+    }
+
+    saveData = () => {
+        setLocalStorage('CART_DATA', this.cartData);
     }
 
     getTotalQuantity = () => this.cartData.reduce((total, p) => total + p.quantity, 0);
