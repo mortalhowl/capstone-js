@@ -5,9 +5,11 @@ export default class ProductController {
     constructor(onAddToCardCallBack) {
         this.onAddToCard = onAddToCardCallBack
         this.apiService = new ApiServices();
-        this.productView = new ProductView('product-container', 'filter-by-brand');
+        this.productView = new ProductView('product-container', 'filter-by-brand', 'btn-asc', 'btn-desc');
 
         this.productData = [];
+        this.currentType = 'all';
+        this.currentSort = null;
     }
 
     init = async () => {
@@ -22,6 +24,7 @@ export default class ProductController {
         this.productView.bindEvents(
             this.handleFilterClick,
             this.handleAddToCartClick,
+            this.handleSortClick,
         )
     }
 
@@ -34,16 +37,30 @@ export default class ProductController {
             })
     }
 
-    handleFilterClick = (type) => {
-        let filteredData = []
-        if (type === 'all') filteredData = this.productData;
-        else filteredData = this.productData.filter(p => p.type === type);
-        this.productView.renderProductList(filteredData);
-    }
-
     handleAddToCartClick = (productId) => {
         const product = this.productData.find(p => p.id === productId);
         // console.log('sp: ', product);
         this.onAddToCard(product);
+    }
+
+    applyFilter = () => {
+        let filteredData = this.currentType === 'all'
+            ? this.productData
+            : this.productData.filter(p => p.type === this.currentType);
+
+        if (this.currentSort === 'asc') filteredData.sort((a, b) => a.price - b.price);
+        else if (this.currentSort === 'desc') filteredData.sort((a, b) => b.price - a.price);
+
+        this.productView.renderProductList(filteredData);
+    }
+
+    handleFilterClick = (type) => {
+        this.currentType = type;
+        this.applyFilter();
+    }
+
+    handleSortClick = (sort) => {
+        this.currentSort = sort;
+        this.applyFilter();
     }
 }
