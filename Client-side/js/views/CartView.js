@@ -2,15 +2,16 @@
 const getId = (id) => document.getElementById(id);
 
 export default class CartView {
-    constructor(productPageId, cartPageId, cartListId, totalQuantityId, orderDetailId) {
+    constructor(productPageId, cartPageId, cartListId, totalQuantityId, orderDetailId, btnCheckoutId) {
         this.productPage = getId(productPageId);
         this.cartPage = getId(cartPageId);
         this.cartList = getId(cartListId);
         this.totalQuantity = getId(totalQuantityId);
         this.orderDetail = getId(orderDetailId);
+        this.btnCheckout = getId(btnCheckoutId);
     }
 
-    bindEvents = (onCloseCart, onRemove, onUpdQuantity) => {
+    bindEvents = (onCloseCart, onRemove, onUpdQuantity, onCheckout) => {
         getId('btn-continue-shopping').addEventListener('click', () => {
             if (onCloseCart) onCloseCart();
         })
@@ -32,6 +33,10 @@ export default class CartView {
 
                 if (onRemove) onRemove(productId);
             }
+        })
+
+        this.btnCheckout.addEventListener('click', () => {
+            if (onCheckout) onCheckout();
         })
     }
 
