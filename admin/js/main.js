@@ -12,7 +12,6 @@ function getId(id) {
   return document.getElementById(id);
 }
 
-// --- 1. LẤY DANH SÁCH & RENDER LÊN GIAO DIỆN ---
 function getPhoneList() {
   api.fetchPhoneList()
     .then((res) => {
@@ -43,7 +42,7 @@ function renderListPhone(list) {
         <td class="px-6 py-4 flex justify-center">
           <img src="${phone.img}" alt="${phone.name}" class="w-16 h-16 object-cover rounded-md shadow" onerror="this.src='https://placehold.co/60x60?text=No+Image'">
         </td>
-        <td class="px-6 py-4 max-w-xs truncate text-left">${phone.description}</td>
+        <td class="px-6 py-4 max-w-xs truncate text-left">${phone.desc}</td>
         <td class="px-6 py-4 space-x-2">
           <button data-id="${phone.id}" class="btn-edit bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1.5 rounded transition shadow">Sửa</button>
           <button data-id="${phone.id}" class="btn-delete bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1.5 rounded transition shadow">Xóa</button>
@@ -53,15 +52,14 @@ function renderListPhone(list) {
   tableBody.innerHTML = contentHTML;
 }
 
-// --- 2. THU THẬP VÀ VALIDATION (KIỂM TRA DỮ LIỆU) ---
 function getInfoPhone() {
   const name = getId("name").value.trim();
   const price = getId("price").value.trim();
   const screen = getId("screen").value.trim();
-  const bCam = getId("bCam").value.trim();
-  const fCam = getId("fCam").value.trim();
+  const backCamera = getId("backCamera").value.trim();
+  const frontCamera = getId("frontCamera").value.trim();
   const img = getId("img").value.trim();
-  const description = getId("description").value.trim();
+  const desc = getId("desc").value.trim();
   const brand = getId("brand").value;
 
   let isValid = true;
@@ -76,8 +74,8 @@ function getInfoPhone() {
   }
 
   isValid &= validation.checkEmpty(screen, "tbScreen", "(*) Thông tin màn hình không được bỏ trống");
-  isValid &= validation.checkEmpty(bCam, "tbBCam", "(*) Camera sau không được bỏ trống");
-  isValid &= validation.checkEmpty(fCam, "tbFCam", "(*) Camera trước không được bỏ trống");
+  isValid &= validation.checkEmpty(backCamera, "tbBCam", "(*) Camera sau không được bỏ trống");
+  isValid &= validation.checkEmpty(frontCamera, "tbFCam", "(*) Camera trước không được bỏ trống");
   
   isValid &= validation.checkEmpty(img, "tbImg", "(*) Đường dẫn ảnh không được bỏ trống");
   if (img !== "" && !img.startsWith("http://") && !img.startsWith("https://")) {
@@ -86,7 +84,7 @@ function getInfoPhone() {
     isValid = false;
   }
 
-  isValid &= validation.checkEmpty(description, "tbDesc", "(*) Mô tả không được bỏ trống");
+  isValid &= validation.checkEmpty(desc, "tbDesc", "(*) Mô tả không được bỏ trống");
   
   if (brand === "" || brand === null) {
     getId("tbBrand").innerHTML = "(*) Bạn chưa chọn hãng sản xuất";
@@ -99,10 +97,9 @@ function getInfoPhone() {
 
   if (!isValid) return null;
 
-  return new Phone(currentEditId, name, Number(price), screen, bCam, fCam, img, description, brand);
+  return new Phone(currentEditId, name, Number(price), screen, backCamera, frontCamera, img, desc, brand);
 }
 
-// --- 3. SỰ KIỆN SUBMIT FORM ---
 getId("phoneForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
@@ -130,7 +127,6 @@ getId("phoneForm").addEventListener("submit", async function (e) {
   }
 });
 
-// --- 4. SỰ KIỆN CLICK TRÊN BẢNG (Sửa/Xóa áp dụng Event Delegation) ---
 getId("tablePhone").addEventListener("click", function (e) {
   const editBtn = e.target.closest(".btn-edit");
   const deleteBtn = e.target.closest(".btn-delete");
@@ -158,16 +154,14 @@ getId("tablePhone").addEventListener("click", function (e) {
         getId("name").value = phone.name;
         getId("price").value = phone.price;
         getId("screen").value = phone.screen;
-        getId("bCam").value = phone.bCam;
-        getId("fCam").value = phone.fCam;
+        getId("backCamera").value = phone.backCamera;
+        getId("frontCamera").value = phone.frontCamera;
         getId("img").value = phone.img;
-        getId("description").value = phone.description;
+        getId("desc").value = phone.desc;
         getId("brand").value = phone.type || "";
-
-        // Thay đổi chữ nút bấm sang chế độ Update
+        
         getId("phoneForm").querySelector("button[type='submit']").innerText = "Update Phone";
 
-        // Tailwind thuần: Hiển thị modal bằng cách xóa class hidden và thêm flex
         const modal = getId("addPhoneModal");
         modal.classList.remove("hidden");
         modal.classList.add("flex");
@@ -176,8 +170,6 @@ getId("tablePhone").addEventListener("click", function (e) {
   }
 });
 
-// --- 5. ĐÓNG / MỞ MODAL TAILWIND THUỒN ---
-// Nút bấm "Thêm sản phẩm" ở giao diện chính
 const btnAddPhoneMain = document.querySelector("[data-modal-target='addPhoneModal']");
 if (btnAddPhoneMain) {
   btnAddPhoneMain.addEventListener("click", () => {
@@ -186,14 +178,12 @@ if (btnAddPhoneMain) {
     clearErrorMessages();
     getId("phoneForm").querySelector("button[type='submit']").innerText = "Add Phone";
     
-    // Mở modal Tailwind thuần
     const modal = getId("addPhoneModal");
     modal.classList.remove("hidden");
     modal.classList.add("flex");
   });
 }
 
-// Tất cả các nút đóng modal (Nút X hoặc nút Close)
 document.querySelectorAll("[data-modal-hide='addPhoneModal']").forEach(btn => {
   btn.addEventListener("click", closeModal);
 });
@@ -227,7 +217,7 @@ getId("searchPhone").addEventListener("input", function (e) {
   renderListPhone(filteredList);
 });
 
-// --- 7. SẮP XẾP THEO GIÁ ---
+
 getId("sortPrice").addEventListener("change", function (e) {
   const typeSort = e.target.value;
   let sortedList = [...phoneListLocal];
@@ -236,5 +226,4 @@ getId("sortPrice").addEventListener("change", function (e) {
   renderListPhone(sortedList);
 });
 
-// Khởi chạy lấy danh sách ban đầu
 getPhoneList();

@@ -4,20 +4,20 @@ class Phone {
     name,
     price,
     screen,
-    bCam,
-    fCam,
+    backCamera,
+    frontCamera,
     img,
-    description,
+    desc,
     type
   ) {
     this.id = id;
     this.name = name;
     this.price = price;
     this.screen = screen;
-    this.bCam = bCam;
-    this.fCam = fCam;
+    this.backCamera = backCamera;
+    this.frontCamera = frontCamera;
     this.img = img;
-    this.description = description;
+    this.desc = desc;
     this.type = type;
   }
 }

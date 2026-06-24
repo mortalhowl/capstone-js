@@ -1,4 +1,4 @@
-const API_URL = "https://6a2a32c1f59cb8f65f1e2d8c.mockapi.io/Products";
+const API_URL = "https://6a1bcc418858a003817b3d04.mockapi.io/api/Products";
 
 class Api {
   // 1. Lấy toàn bộ danh sách điện thoại từ MockAPI
