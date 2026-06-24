@@ -12,9 +12,12 @@ export default class CartView {
     }
 
     bindEvents = (onCloseCart, onRemove, onUpdQuantity, onCheckout) => {
-        getId('btn-continue-shopping').addEventListener('click', () => {
-            if (onCloseCart) onCloseCart();
-        })
+        this.cartPage.addEventListener('click', (e) => {
+            const btnContinue = e.target.closest('.btn-continue-shopping');
+            if (btnContinue) {
+                if (onCloseCart) onCloseCart();
+            }
+        });
 
         this.cartList.addEventListener('click', (e) => {
             // tang/giam so luong
@@ -63,12 +66,27 @@ export default class CartView {
     renderList = (cartData) => {
         let html = '';
         if (cartData.length === 0) {
+            this.btnCheckout.disabled = true;
+            this.btnCheckout.classList.add('bg-gray-300', 'text-gray-500', 'cursor-not-allowed', 'opacity-60');
+            this.btnCheckout.classList.remove('bg-gradient-to-r', 'from-amber-500', 'to-orange-600', 'hover:from-amber-400', 'hover:to-orange-500', 'text-white');
             html = `
-                <div class="h-30 p-4 flex flex-col justify-center items-center">
-                    <span class="text-xs text-slate-400 font-medium uppercase">Không có sản phẩm</span>
+                <div class="flex flex-col justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-slash2-icon lucide-circle-slash-2 text-slate-400">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M22 2 2 22" />
+                    </svg>
+                    <span class="text-xs text-slate-400 font-medium uppercase my-3">Không có sản phẩm</span>
+                    <button
+                        class="btn-continue-shopping px-6 py-2 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-bold rounded-full shadow-lg transition-all hover:-translate-y-0.5">Quay
+                        lại mua sắm</button>
                 </div>
             `
         } else {
+            this.btnCheckout.disabled = false;
+            this.btnCheckout.classList.remove('bg-gray-300', 'text-gray-500', 'cursor-not-allowed', 'opacity-60')
+            this.btnCheckout.classList.add('bg-gradient-to-r', 'from-amber-500', 'to-orange-600', 'hover:from-amber-400', 'hover:to-orange-500', 'text-white');
             html = cartData.map(p => `
                 <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-6 shadow-sm flex flex-col sm:flex-row items-center gap-4 sm:gap-6 relative group">
                     <div class="w-24 h-24 bg-slate-100 rounded-xl flex-shrink-0 flex items-center justify-center text-slate-400 text-xs font-semibold">
