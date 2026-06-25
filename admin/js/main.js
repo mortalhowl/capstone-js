@@ -109,18 +109,24 @@ getId("phoneForm").addEventListener("submit", async function (e) {
   if (currentEditId) {
     try {
       await api.updatePhone(currentEditId, phoneData);
-      alert("Cập nhật thông tin điện thoại thành công!");
       closeModal();
       getPhoneList();
+      setTimeout(() => {
+        alert("Cập nhật thông tin điện thoại thành công!");
+      }, 50);
+    
     } catch (err) {
       console.error("Lỗi cập nhật sản phẩm:", err);
     }
   } else {
     try {
       await api.addPhone(phoneData);
-      alert("Thêm điện thoại mới thành công!");
+   
       closeModal();
       getPhoneList();
+      setTimeout(() => {
+        alert("Thêm điện thoại mới thành công!");
+      }, 50);
     } catch (err) {
       console.error("Lỗi thêm mới sản phẩm:", err);
     }
@@ -168,6 +174,12 @@ getId("tablePhone").addEventListener("click", function (e) {
       })
       .catch((err) => console.error("Lỗi lấy chi tiết sản phẩm:", err));
   }
+});
+
+getId("btnAddPhone").addEventListener("click", () => {
+  const modal = getId("addPhoneModal");
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
 });
 
 const btnAddPhoneMain = document.querySelector("[data-modal-target='addPhoneModal']");

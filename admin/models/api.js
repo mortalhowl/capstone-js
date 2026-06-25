@@ -1,7 +1,6 @@
 const API_URL = "https://6a1bcc418858a003817b3d04.mockapi.io/api/Products";
 
 class Api {
-  // 1. Lấy toàn bộ danh sách điện thoại từ MockAPI
   fetchPhoneList() {
     return axios({
       url: API_URL,
@@ -9,7 +8,6 @@ class Api {
     });
   }
 
-  // 2. Lấy thông tin chi tiết một chiếc điện thoại dựa vào ID
   getPhoneById(id) {
     return axios({
       url: `${API_URL}/${id}`,
@@ -17,7 +15,6 @@ class Api {
     });
   }
 
-  // 3. Thêm mới một sản phẩm điện thoại
   addPhone(phone) {
     return axios({
       url: API_URL,
@@ -26,7 +23,6 @@ class Api {
     });
   }
 
-  // 4. Cập nhật thông tin điện thoại qua ID
   updatePhone(id, phone) {
     return axios({
       url: `${API_URL}/${id}`,
@@ -35,7 +31,6 @@ class Api {
     });
   }
 
-  // 5. Xóa điện thoại khỏi danh sách
   deletePhone(id) {
     return axios({
       url: `${API_URL}/${id}`,
