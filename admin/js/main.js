@@ -60,7 +60,7 @@ function getInfoPhone() {
   const frontCamera = getId("frontCamera").value.trim();
   const img = getId("img").value.trim();
   const desc = getId("desc").value.trim();
-  const brand = getId("brand").value;
+  const type = getId("type").value;
 
   let isValid = true;
 
@@ -86,7 +86,7 @@ function getInfoPhone() {
 
   isValid &= validation.checkEmpty(desc, "tbDesc", "(*) Mô tả không được bỏ trống");
   
-  if (brand === "" || brand === null) {
+  if (type === "" || type === null) {
     getId("tbBrand").innerHTML = "(*) Bạn chưa chọn hãng sản xuất";
     getId("tbBrand").classList.remove("hidden");
     isValid = false;
@@ -97,7 +97,7 @@ function getInfoPhone() {
 
   if (!isValid) return null;
 
-  return new Phone(currentEditId, name, Number(price), screen, backCamera, frontCamera, img, desc, brand);
+  return new Phone(currentEditId, name, Number(price), screen, backCamera, frontCamera, img, desc, type);
 }
 
 getId("phoneForm").addEventListener("submit", async function (e) {
@@ -164,7 +164,7 @@ getId("tablePhone").addEventListener("click", function (e) {
         getId("frontCamera").value = phone.frontCamera;
         getId("img").value = phone.img;
         getId("desc").value = phone.desc;
-        getId("brand").value = phone.type || "";
+        getId("type").value = phone.type || "";
         
         getId("phoneForm").querySelector("button[type='submit']").innerText = "Update Phone";
 
